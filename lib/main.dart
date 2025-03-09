@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:expense_tracker/services/locator.dart';
 
 import 'blocs/app_bloc.dart';
+import 'screens/home/home_screen.dart';
 
 void main() {
   setupLocator();
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (_) => locator<AppBloc>(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(primarySwatch: Colors.blue),
         home: Scaffold(
           body: BlocBuilder<AppBloc, AppState>(
@@ -24,7 +26,7 @@ class MyApp extends StatelessWidget {
               if (state is AppInitial) {
                 return Center(child: CircularProgressIndicator());
               } else if (state is AppLoaded) {
-                return Center(child: Text('App Loaded'));
+                return HomeScreen();
               }
               return Container();
             },
