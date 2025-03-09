@@ -19,7 +19,10 @@ class MyApp extends StatelessWidget {
       create: (_) => locator<AppBloc>(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(primarySwatch: Colors.blue),
+        theme: ThemeData(
+          primaryColor: Color(0xFF1F2937),
+          scaffoldBackgroundColor: Color(0xFFF3F4F6),
+        ),
         home: Scaffold(
           body: BlocBuilder<AppBloc, AppState>(
             builder: (context, state) {

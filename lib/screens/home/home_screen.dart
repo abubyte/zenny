@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:icons_flutter/icons_flutter.dart';
 
 import 'widgets/expense_card.dart';
 import 'widgets/build_action_button.dart';
@@ -10,91 +11,144 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Abdurrohman Davron'),
-        actions: [
-          IconButton(icon: const Icon(Icons.notifications), onPressed: () {}),
-        ],
-      ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Total balance card
-              Card(
-                color: Colors.black87,
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Total Balance',
-                        style: TextStyle(color: Colors.white70, fontSize: 16),
-                      ),
-                      const SizedBox(height: 8),
-                      const Text(
-                        '\$4,250.00',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold,
+        child: Column(
+          children: [
+            // App Bar
+            Container(
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 50,
+                  right: 16,
+                  bottom: 16,
+                  left: 16,
+                ),
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 30,
+                      backgroundColor: Color(0xFF1F2937),
+                      child: Icon(Icons.person, color: Colors.white),
+                    ),
+                    SizedBox(width: 16),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Welcome back!'),
+                        Text(
+                          'Abdurrohman Davron',
+                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
+                      ],
+                    ),
+                    Spacer(),
+                    Icon(Icons.notifications_outlined),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Card(
+                    color: Color(0xFF1F2937),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Total Balance',
+                            style: TextStyle(
+                              color: Colors.white70,
+                              fontSize: 16,
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            '\$4,250.00',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 32,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          LinearProgressIndicator(
+                            value: 4250 / 5000,
+                            minHeight: 10,
+                            color: Colors.white,
+                            backgroundColor: Colors.white24,
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            'Monthly budget \$5,000.00',
+                            style: TextStyle(
+                              color: Colors.white70,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ],
                       ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Monthly budget \$5,000.00',
-                        style: TextStyle(color: Colors.white70, fontSize: 14),
+                    ),
+                  ),
+                  SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      BuildActionButton(
+                        icon: Feather.mic,
+                        label: 'Voice',
+                        screen: VoiceCommandScreen(),
+                      ),
+                      SizedBox(width: 16),
+
+                      BuildActionButton(icon: Feather.camera, label: 'Scan'),
+                      SizedBox(width: 16),
+
+                      BuildActionButton(
+                        icon: Feather.pie_chart,
+                        label: 'Analytics',
                       ),
                     ],
                   ),
-                ),
-              ),
-              const SizedBox(height: 16),
-
-              // Quick Actions
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  BuildActionButton(icon: Icons.mic, label: 'Voice'),
-                  BuildActionButton(icon: Icons.mic, label: 'Scan'),
-                  BuildActionButton(icon: Icons.mic, label: 'Analytics'),
+                  SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Recent Transactions',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      TextButton(onPressed: () {}, child: Text('See all')),
+                    ],
+                  ),
+                  SizedBox(height: 8),
+                  ExpenseCard(
+                    title: "Restaurant",
+                    time: 'Today, 2:30 PM',
+                    amount: 24.50,
+                  ),
+                  ExpenseCard(title: "Fuel", time: 'Yesterday', amount: 18),
+                  ExpenseCard(
+                    title: "Grocery",
+                    time: 'Jan 10, 2025',
+                    amount: 45,
+                  ),
+                  SizedBox(height: 16),
                 ],
               ),
-              const SizedBox(height: 16),
-
-              // Recent Transactions
-              Text(
-                'Recent Transactions',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 8),
-              ExpenseCard(
-                title: 'Shopping',
-                time: 'Today, 11:00 AM',
-                amount: '-\$250.00',
-              ),
-              ExpenseCard(
-                title: 'Food',
-                time: 'Yesterday, 02:00 PM',
-                amount: '-\$50.00',
-              ),
-              ExpenseCard(
-                title: 'Transport',
-                time: 'Yesterday, 10:00 AM',
-                amount: '-\$100.00',
-              ),
-              SizedBox(height: 16),
-
-              // See all button
-              TextButton(onPressed: () {}, child: Text('See all')),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
-
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
@@ -102,20 +156,14 @@ class HomeScreen extends StatelessWidget {
             icon: Icon(Icons.credit_card),
             label: 'Cards',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.add), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Add'),
           BottomNavigationBarItem(icon: Icon(Icons.bar_chart), label: 'Stats'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
         currentIndex: 0,
-        onTap: (index) {
-          if (index == 2) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => VoiceCommandScreen()),
-            );
-          }
-        },
+        onTap: (index) {},
         type: BottomNavigationBarType.fixed,
+        selectedItemColor: Theme.of(context).primaryColor,
       ),
     );
   }
