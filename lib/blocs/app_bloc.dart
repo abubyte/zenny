@@ -16,9 +16,7 @@ class AppLoaded extends AppState {}
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc() : super(AppInitial()) {
     on<AppStarted>((event, emit) async {
-      await Future.delayed(
-        Duration(seconds: 2),
-      ); // Simulate loading TODO: Remove this line
+      await Future.delayed(Duration(seconds: 2));
       emit(AppLoaded());
     });
 
