@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class BuildActionButton extends StatelessWidget {
-  const BuildActionButton({
+class ActionButton extends StatelessWidget {
+  const ActionButton({
     super.key,
     required this.icon,
     required this.label,

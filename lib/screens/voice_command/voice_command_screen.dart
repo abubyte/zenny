@@ -13,22 +13,28 @@ class VoiceCommandScreen extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
         ),
       ),
+
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Instructions
             Text('Say something like'),
             SizedBox(height: 16),
             Text('"Transfer \$50 to John"'),
             Text('"Show my expenses for last month"'),
             Text('"What\'s my balance?"'),
             SizedBox(height: 32),
+
+            // Microphone Button
             CircleAvatar(
               radius: 40,
               backgroundColor: Colors.black87,
               child: Icon(Icons.mic, color: Colors.white, size: 40),
             ),
             SizedBox(height: 8),
+
+            // Hint
             Text('Tap to speak', style: TextStyle(fontSize: 18)),
           ],
         ),

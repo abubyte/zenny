@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:expense_tracker/services/locator.dart';
 
 import 'blocs/app_bloc.dart';
-import 'screens/home/home_screen.dart';
+import 'navigation_bar.dart';
+import 'services/locator.dart';
 
 void main() {
   setupLocator();
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
               if (state is AppInitial) {
                 return Center(child: CircularProgressIndicator());
               } else if (state is AppLoaded) {
-                return HomeScreen();
+                return NavigationScreen();
               }
               return Container();
             },
