@@ -1,13 +1,32 @@
 import 'package:flutter/material.dart';
 
+import '../../models/category_model.dart';
+import '../../models/transaction_model.dart';
 import 'widgets/home_app_bar.dart';
 import 'widgets/balance_card.dart';
-import 'widgets/expense_card.dart';
+import 'widgets/transaction_list.dart';
 import 'widgets/action_buttons_bar.dart';
 import '../../widgets/labels/section_label.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
+
+  final List<Transaction> transactions = [
+    Transaction(
+      title: 'Groceries',
+      amount: 100.0,
+      type: TransactionType.expense,
+      category: Category(id: '1', name: 'Groceries', iconCode: 'e88a'),
+      date: DateTime.now(),
+    ),
+    Transaction(
+      title: 'Salary',
+      amount: 1000.0,
+      type: TransactionType.income,
+      category: Category(id: '2', name: 'Salary', iconCode: 'e88a'),
+      date: DateTime.now(),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -34,12 +53,7 @@ class HomeScreen extends StatelessWidget {
                   SectionLabel('Recent Transactions', actionLabel: 'See all'),
                   SizedBox(height: 8),
 
-                  ListView.builder(
-                    itemBuilder: (_, __) => ExpenseCard.placeholder(),
-                    itemCount: 3,
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                  ),
+                  TransactionList(transactions: transactions),
                   SizedBox(height: 16),
                 ],
               ),
