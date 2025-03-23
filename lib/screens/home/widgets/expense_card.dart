@@ -8,6 +8,13 @@ class ExpenseCard extends StatelessWidget {
     required this.amount,
   });
 
+  const ExpenseCard.placeholder({
+    super.key,
+    this.title = 'Shopping',
+    this.time = 'Today, 10:00 AM',
+    this.amount = 100.0,
+  });
+
   final String title;
   final String time;
   final double amount;
@@ -26,7 +33,7 @@ class ExpenseCard extends StatelessWidget {
             color: Color(0xFFF3F4F6),
             borderRadius: BorderRadius.circular(100),
           ),
-          child: Icon(Icons.shopping_cart, color: Color(0xFF364456), size: 16,),
+          child: Icon(Icons.shopping_cart, color: Color(0xFF364456), size: 16),
         ),
         title: Text(title),
         subtitle: Text(time, style: TextStyle(color: Colors.black54)),
